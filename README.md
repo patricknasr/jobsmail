@@ -11,4 +11,6 @@
 <h3>Usage</h3>
 
 `source venv/bin/activate`
+<br>
+<br>
 `pip install -r requirements.txt`
