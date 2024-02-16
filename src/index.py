@@ -9,6 +9,6 @@ def main():
     accessed = search_and_store(results_file='./results/quantium.csv', url='https://thequantiumgroup.hire.trakstar.com/', soup=soup, selector='#content > div > form > div.js-openings-list.opening-list.col-md-9', keywords=['Graduate', 'Interns'])
     if accessed is False:
         raise ValueError('jquery did not work')
-    send_email(subject="Open Grad Roles", body="Quantium has roles", to_email='pnasrwork@gmail.com')
+    send_email(to_email='pnasrwork@gmail.com')
 if __name__ == "__main__":
     main()
