@@ -9,4 +9,6 @@
 **Selenium:** Primarily used for automating web applications for testing purposes, but it's also quite powerful for web scraping tasks that require interaction with JavaScript or dealing with websites that implement heavy JavaScript to render their content. Selenium can automate a web browser, allowing you to mimic human browsing behavior effectively.
 
 <h3>Usage</h3>
-```pip install -r requirements.txt```
+
+`source venv/bin/activate`
+`pip install -r requirements.txt`
