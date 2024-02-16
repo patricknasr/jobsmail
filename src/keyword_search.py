@@ -1,20 +1,22 @@
 import csv
-import datetime
+from datetime import datetime
 
-def search_and_store(results_file, url, soup, selector, keywords):
-    elements = soup.select('#content > div > form > div.js-openings-list.opening-list.col-md-9 > div')
+def search_and_store(results_file, url, soup, selector):
 
-    found = False  
+    results_file =  "./results/" + datetime.now().strftime("%d-%m-%Y") + ".csv"
+
+    elements = soup.select(selector)
 
     graduate_children = [
         child.text.replace('\n', '').replace('  ', '') for child in elements
         if "Graduate" in child.text
     ]  
 
-    with open(results_file, mode='a', newline='') as file:
-        writer = csv.writer(file)
-        # Now storing element_text which has no newlines
-        writer.writerow([datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), url, graduate_children])
-        found = True
-
-    return found
+    if graduate_children:  # Check if there are any graduate_children before writing
+        with open(results_file, mode='a', newline='') as file:
+            writer = csv.writer(file)
+            # Write each graduate child on a new row
+            for grad_child in graduate_children:
+                writer.writerow([datetime.now().strftime("%Y-%m-%d %H:%M:%S"), url, grad_child])
+    
+    return
