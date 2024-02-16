@@ -1,5 +1,6 @@
 import csv
 from datetime import datetime
+import os
 
 def search_and_store(results_file, url, soup, selector):
 
@@ -11,6 +12,9 @@ def search_and_store(results_file, url, soup, selector):
         child.text.replace('\n', '').replace('  ', '') for child in elements
         if "Graduate" in child.text
     ]  
+
+    if not os.path.exists('./results'):
+        os.makedirs('./results')
 
     if graduate_children:  # Check if there are any graduate_children before writing
         with open(results_file, mode='a', newline='') as file:
