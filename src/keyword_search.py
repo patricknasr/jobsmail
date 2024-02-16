@@ -2,6 +2,7 @@ import csv
 from datetime import datetime
 import os
 
+KEYWORDS = ['graduate', 'intern']
 def search_and_store(results_file, url, soup, selector):
 
     results_file =  "./results/" + datetime.now().strftime("%d-%m-%Y") + ".csv"
@@ -9,9 +10,9 @@ def search_and_store(results_file, url, soup, selector):
     elements = soup.select(selector)
 
     graduate_children = [
-        child.text.replace('\n', '').replace('  ', '') for child in elements
-        if "Graduate" in child.text
-    ]  
+        child.text.replace('\n', ' ').replace('  ', '') for child in elements
+        if any(keyword in child.text.lower() for keyword in KEYWORDS)
+    ]
 
     if not os.path.exists('./results'):
         os.makedirs('./results')
