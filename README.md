@@ -14,3 +14,7 @@
 <br>
 <br>
 `pip install -r requirements.txt`
+`source venv/bin/activate`
+<br>
+<br>
+`python3 src/index.py`
